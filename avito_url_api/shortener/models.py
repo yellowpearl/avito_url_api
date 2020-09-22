@@ -28,7 +28,7 @@ def check_url_in_bd_or_hash(url):
         link = Link.objects.get(full_link=url)
         return link.short_link_hash
     except:
-        return hash_url()
+        return hash_url(url)
 
 
 def hash_url(url):
