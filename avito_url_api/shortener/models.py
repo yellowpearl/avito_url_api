@@ -2,11 +2,9 @@ from django.db import models
 import urllib.parse
 import hashlib
 
+
 def decode_request_body(request):
-    """
-    decode post request body and unquote him to urlencode our url
-    :return:
-    """
+    """decode post request body and unquote him to urlencode our url"""
     url = urllib.parse.unquote(request.body.decode())
     url = url[url.index('=') + 1:]
     return url
@@ -41,6 +39,12 @@ def hash_url(url):
         except:
             Link.objects.create(full_link=url, short_link_hash=sha)
             return sha
+
+
+def get_full_url_from_hash(hash):
+    """return link obj from db where short_link_hash=hash"""
+    link = Link.objects.get(short_link_hash=hash)
+    return link
 
 
 class Link(models.Model):
