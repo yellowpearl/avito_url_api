@@ -14,7 +14,7 @@ def check_http_or_https(url):
     """return url only with https prefix"""
     if url[:8] != 'https://':
         if url[:7] != 'http://':
-            url = 'https://' + url[7:]
+            url = 'https://' + url
         else:
             url = 'https://' + url
     return url
